@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Chuông mỗi 3 phút</title>
+<style>
+body{
+    font-family:Arial;
+    text-align:center;
+    margin-top:100px;
+}
+#time{
+    font-size:60px;
+    margin:20px;
+}
+button{
+    font-size:20px;
+    padding:10px 20px;
+}
+</style>
+</head>
+<body>
+
+<h1>Chuông mỗi 3 phút</h1>
+<div id="time">03:00</div>
+<button onclick="start()">Bắt đầu</button>
+
+<script>
+let time = 180;
+let running = false;
+
+function update(){
+    let m = Math.floor(time/60);
+    let s = time%60;
+    document.getElementById("time").innerText =
+        String(m).padStart(2,"0")+":"+
+        String(s).padStart(2,"0");
+}
+
+function beep(){
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const osc = ctx.createOscillator();
+    osc.connect(ctx.destination);
+    osc.frequency.value = 800;
+    osc.start();
+    setTimeout(()=>{
+        osc.stop();
+        ctx.close();
+    },500);
+}
+
+function start(){
+    if(running) return;
+    running=true;
+
+    setInterval(()=>{
+        time--;
+        update();
+
+        if(time<=0){
+            beep();
+            alert("Đã hết 3 phút!");
+            time=180;
+        }
+    },1000);
+}
+
+update();
+</script>
+
+</body>
+</html>
