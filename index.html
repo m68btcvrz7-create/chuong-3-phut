@@ -24,12 +24,11 @@ button{
 <h1>Chuông mỗi 3 phút</h1>
 <div id="time">03:00</div>
 <button onclick="start()">Bắt đầu</button>
-<button onclick="stop()">Dừng</button>
 
 <script>
 let time = 180;
 let running = false;
-let timer;
+
 function update(){
     let m = Math.floor(time/60);
     let s = time%60;
@@ -54,7 +53,7 @@ function start(){
     if(running) return;
     running=true;
 
-    timer = setInterval(()=>{
+    setInterval(()=>{
         time--;
         update();
 
@@ -65,23 +64,8 @@ function start(){
         }
     },1000);
 }
-function start(){
-   ...
-}
-
-function stop(){
-    clearInterval(timer);
-    timer = null;
-    running = false;
-}
-    clearInterval(timer);
-    running = false;
-}
 
 update();
-update();
-<script>
-...
 </script>
 
 </body>
