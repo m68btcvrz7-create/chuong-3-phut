@@ -29,7 +29,7 @@ button{
 <script>
 let time = 180;
 let running = false;
-
+let timer;
 function update(){
     let m = Math.floor(time/60);
     let s = time%60;
@@ -54,7 +54,7 @@ function start(){
     if(running) return;
     running=true;
 
-    setInterval(()=>{
+    timer = setInterval(()=>{
         time--;
         update();
 
@@ -65,8 +65,19 @@ function start(){
         }
     },1000);
 }
+function start(){
+   ...
+}
+
+function stop(){
+    clearInterval(timer);
+    running = false;
+}
 
 update();
+update();
+<script>
+...
 </script>
 
 </body>
