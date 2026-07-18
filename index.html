@@ -71,6 +71,10 @@ function start(){
 
 function stop(){
     clearInterval(timer);
+    timer = null;
+    running = false;
+}
+    clearInterval(timer);
     running = false;
 }
 
